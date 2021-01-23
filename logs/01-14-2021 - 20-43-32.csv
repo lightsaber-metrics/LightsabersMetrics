@@ -1,0 +1,6 @@
+map,winner,win condition,blue queen lives,gold queen lives,blue berries in,gold berries in
+Helix,gold,military,0,3,3,4
+BQK,blue,military,4,0,1,8
+Helix,gold,military,0,2,1,1
+BQK,blue,military,4,0,0,0
+Spire,blue,military,4,0,0,4
