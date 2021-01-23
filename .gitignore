@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 
 logs/
+LightsabersMetrics.code-workspace
