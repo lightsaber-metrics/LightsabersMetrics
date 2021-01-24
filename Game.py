@@ -30,7 +30,6 @@ class Game:
         self.complete = False
         self.eventLog = "Game Start. Map: " + self.map.name + " Local time: " + str(round(time(), 2))
 
-
     def log(self, message, currTime=None):
         if (currTime is None):
             currTime = time()
@@ -106,8 +105,6 @@ class Game:
         self.blueQueenLives = currBlueQueenLives
         self.goldQueenLives = currGoldQueenLives
         return (self.blueQueenLives, self.goldQueenLives)
-    
-    
 
     def getInfo (self):
         info = "Map: " + self.map.name + "\n"

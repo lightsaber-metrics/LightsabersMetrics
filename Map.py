@@ -6,6 +6,7 @@ from Egg import Egg
 import os
 
 class Map:
+
     def __init__(self, mapName):
         self.blueHoles = []
         self.goldHoles = []
@@ -26,4 +27,24 @@ class Map:
         self.blueSnail = rawjson['blueSnail']
         self.goldSnail = rawjson['goldSnail']
 
+    @staticmethod
+    def checkMap(state, maps = None, confidenceReq = 60):
+        if (maps is None):
+            mapNames = ["BQK", "Helix", "Nest", "Pod", "Spire", "Split", "Tally"]
+            maps = []
+            for name in mapNames:
+                maps.append(Map(name))
+        currConfidence = 0
+        currMap = ()
+        for map in maps:
+            hits = np.sum(np.equal(map.array, state))
+            if (hits > currConfidence):
+                currConfidence = hits
+                currMap = map
+        currConfidence = 100 * currConfidence / state.size
+        if (currConfidence > confidenceReq):
+            return currMap
+        else:
+            return None
         
+

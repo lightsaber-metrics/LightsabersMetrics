@@ -76,7 +76,6 @@ def parseEndScreen(state):
         return (winner, condition)
     return None
 
-
 def startSet():
     currSet = Set()
     while (not currSet.complete):
