@@ -16,7 +16,7 @@ Main file to run (right now) is KQBTracker.py
  ## Restrictions
   * Right now, this only works for fullscreen 1920x1080 KQB.  Other resolutions will break things horribly.
   * This cannot be used on video streamed to/through Twitch/Discord, due to image compression.  It should work on locally recorded games.
-  * I've only tested this on Windos, I've tried to make the code OS agnostic but I can't guarantee compatibility.
+  * I've only tested this on Windows, I've tried to make the code OS agnostic but I can't guarantee compatibility.
   
 ## Coming soon
   * GUI
