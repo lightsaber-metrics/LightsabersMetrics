@@ -12,6 +12,10 @@ class Set:
         self.complete = False
         self.blueWins = 0
         self.goldWins = 0
+        now = datetime.now()
+        if (not os.path.isdir("logs")):
+            os.mkdir("logs")
+        self.path = now.strftime("%m-%d-%Y - %H.%M.%S")
 
     def addGame(self, game):
         self.games.append(game)
@@ -21,8 +25,9 @@ class Set:
             self.goldWins +=1
 
     def log(self):
-        now = datetime.now()
-        f = open(os.path.join("logs", now.strftime("%m-%d-%Y - %H.%M.%S.log")), "x")
+        if (not os.path.isdir(os.path.join("logs", self.path))):
+            os.mkdir(os.path.join("logs", self.path))
+        f = open(os.path.join("logs", self.path, self.path+".log"), "w")
         toLog = ""
         for i in range(len(self.games)):
             toLog += "Game " + str(i+1) + ":\n"
@@ -66,7 +71,17 @@ class Set:
         csv = "map,winner,win condition,blue queen lives,gold queen lives,blue berries in,gold berries in\n"
         for game in self.games:
             csv += game.map.name + "," + game.winner + "," + game.winCondition + "," + str(game.blueQueenLives) + "," + str(game.goldQueenLives) + "," + str(game.blueBerriesIn) + "," + str(game.goldBerriesIn) + "\n"
-        now = datetime.now()
-        f = open(os.path.join("logs", now.strftime("%m-%d-%Y - %H-%M-%S.csv")), "x")
+
+        if (not os.path.isdir("logs")):
+            os.mkdir("logs")
+        if (not os.path.isdir(os.path.join("logs", self.path))):
+            os.mkdir(os.path.join("logs", self.path))
+        f = open(os.path.join("logs", self.path, self.path+".csv"), "w")
         f.write(csv)
         f.close()
+
+test = Set()
+test.toCSV()
+test.log()
+test.toCSV()
+test.log()
