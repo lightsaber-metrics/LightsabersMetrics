@@ -1,0 +1,26 @@
+# LightsabersMetrics
+This is a program that attempts to track stats in a live Killer Queen Black set, by taking screenshots of the game (via MSS) and performing image analysis.
+Main file to run (right now) is KQBTracker.py
+
+
+##Features
+  * Detect what map is being played on, and exactly when it starts
+  * Accurately track berries in the hive for blue and gold
+  * Track queen lives (working for most maps)
+  * Detect the winning team
+  * Detect the victory condition
+  * Track a full best of 5 set
+  * Output event log for each game
+  * Output set information in CSV format
+  
+ ##Restrictions
+  * Right now, this only works for fullscreen 1920x1080 KQB.  Other resolutions will break things horribly.
+  * This cannot be used on video streamed to/through Twitch/Discord, due to image compression.  It should work on locally recorded games.
+  * I've only tested this on Windos, I've tried to make the code OS agnostic but I can't guarantee compatibility.
+  
+##Coming soon
+  * GUI
+  * Live text file editing for use with OBS
+  * Integration with HattrickSwayze's Scoreboard
+  * Player/Stat detection using Prosive's API
+  * 🐌
