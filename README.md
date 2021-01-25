@@ -15,6 +15,7 @@ Main file to run (right now) is KQBTracker.py
   
  ## Restrictions
   * Right now, this only works for fullscreen 1920x1080 KQB.  Other resolutions will break things horribly.
+  * Alt-tabbing duing gameplay will probably break stuff.  Doing it in between sets or in between a match (during loading) *should* be okay.
   * This cannot be used on video streamed to/through Twitch/Discord, due to image compression.  It should work on locally recorded games.
   * I've only tested this on Windows, I've tried to make the code OS agnostic but I can't guarantee compatibility.
   
