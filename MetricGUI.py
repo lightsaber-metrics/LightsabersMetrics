@@ -1,4 +1,4 @@
-from LightsaberMetrics import LSM
+from LightsabersMetrics import LSM
 import PySimpleGUI as sg
 import threading
 import os
@@ -43,8 +43,6 @@ if __name__ == '__main__':
             window['statusText'].Update(text = "Status: Recording.")
             window.minimize()
             metric = LSM()
-            thread =  threading.Thread(target=metric.freeze, daemon=True)
-            thread.start()
         if (event == "stopButton"):
             for element in window.element_list():
                 if hasattr(element, 'Disabled'):
@@ -52,5 +50,4 @@ if __name__ == '__main__':
                 window['stopButton'].Update(disabled = True)
                 window['sbKey'].Update(disabled = not bool(window['sbBox'].get()))
                 window['statusText'].Update(text = "Status: Stopped.")
-                metric.stop()
     window.close()

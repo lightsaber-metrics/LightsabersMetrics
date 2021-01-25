@@ -58,5 +58,6 @@ class LSM:
         if (self.logging):
             self.currSet.log()
 
-LSM = LSM()
-LSM.startSet()
+if __name__ == '__main__':
+    LSM = LSM()
+    LSM.startSet()
