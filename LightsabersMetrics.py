@@ -12,7 +12,7 @@ import os
 
 class LSM:
     
-    def __init__(self, modules = ["stats", "logging"]):
+    def __init__(self, modules = ["stats", "logging"], scoreboardKey = None):
         mapNames = ["BQK", "Helix", "Nest", "Pod", "Spire", "Split", "Tally"]
         self.maps = []
         for name in mapNames:
@@ -25,6 +25,11 @@ class LSM:
         self.logging = "logging" in modules
         self.textFiles = "streamer" in modules
         self.scoreboard = "scoreboard" in modules
+        self.exit = False
+        print (modules)
+
+    def stop(self):
+        self.exit = True
 
     def updateState(self):
         sct_img = self.sct.grab(self.mon)
@@ -37,18 +42,25 @@ class LSM:
     def startSet(self):
         self.currSet = Set()
         while (not self.currSet.complete):
+            if self.exit:
+                return
             currMap = None
             print ("Waiting to detect game...")
             while (currMap is None):
                 currMap = Map.checkMap(self.updateState())
+                if self.exit:
+                    return
             currGame = Game(currMap)
             print ("Detected: " + currGame.map.name)
             while (not currGame.update(self.updateState())):
-                pass
+                if self.exit:
+                    return
             currWinner = None
             endTime = time.time()
             while (currWinner is None):
                 currWinner = WinCon.checkWinCon(self.updateState())
+                if self.exit:
+                    return
             currGame.endGame(currWinner[0], currWinner[1], endTime)
             print (currGame.getInfo())
             self.currSet.addGame(currGame)
