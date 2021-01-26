@@ -26,7 +26,6 @@ class LSM:
         self.textFiles = "streamer" in modules
         self.scoreboard = "scoreboard" in modules
         self.exit = False
-        print (modules)
 
     def stop(self):
         self.exit = True
