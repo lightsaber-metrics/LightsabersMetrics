@@ -1,11 +1,13 @@
 from Berry import Berry
+from WinCon import WinCon
 from Egg import Egg
+from Snail import Snail
 from time import time
 import numpy as np
 
 class Game:
 
-    def __init__(self, map):
+    def __init__(self, map, scoreboardKey=None):
         self.map = map
         self.winner = None
         self.winCondition = None
@@ -14,6 +16,7 @@ class Game:
         self.blueBerriesIn = 0
         self.goldBerriesIn = 0
         self.blueBerries = []
+        self.snailLoc = 964
         for hole in self.map.blueHoles:
             self.blueBerries.append(Berry(hole[0], hole[1], "blue"))
         self.goldBerries = []
@@ -28,7 +31,8 @@ class Game:
         self.blueQueenLives = 3
         self.goldQueenLives = 3
         self.complete = False
-        self.eventLog = "Game Start. Map: " + self.map.name + " Local time: " + str(round(time(), 2))
+        self.scoreboardKey = scoreboardKey
+        self.eventLog = "Game Start. Map: " + self.map.name + " Local time: " + str(round(time(), 2)) + "\n"
 
     def log(self, message, currTime=None):
         if (currTime is None):
@@ -36,6 +40,12 @@ class Game:
         toLog = str(round(currTime - self.startTime, 2)) + "s\t" + message
         print (toLog)
         self.eventLog += toLog + "\n"
+
+    def updateSnail(self, state):
+        currSnailLoc = Snail.checkSnailLoc(state=state, map=self.map)
+        if currSnailLoc is not None and currSnailLoc != self.snailLoc:
+            self.log("Snail Location: " + str(currSnailLoc))
+            self.snailLoc = currSnailLoc
     
     def endGame (self, winner, winCondition, endTime=time()):
         self.complete = True
@@ -87,7 +97,8 @@ class Game:
     def update(self, state):
         self.updateQueenLives(state)
         self.updateBerries(state)
-        return (self.checkMapOver(state))
+        self.updateSnail(state)
+        return (WinCon.checkGameOver(state))
 
     def updateQueenLives(self, state):
         currBlueQueenLives = 1

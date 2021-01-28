@@ -68,10 +68,9 @@ class Set:
         return info
 
     def toCSV(self):
-        csv = "map,winner,win condition,blue queen lives,gold queen lives,blue berries in,gold berries in\n"
+        csv = "map,winner,win condition,blue queen lives,gold queen lives,blue berries in,gold berries in,snail loc\n"
         for game in self.games:
-            csv += game.map.name + "," + game.winner + "," + game.winCondition + "," + str(game.blueQueenLives) + "," + str(game.goldQueenLives) + "," + str(game.blueBerriesIn) + "," + str(game.goldBerriesIn) + "\n"
-
+            csv += game.map.name + "," + game.winner + "," + game.winCondition + "," + str(game.blueQueenLives) + "," + str(game.goldQueenLives) + "," + str(game.blueBerriesIn) + "," + str(game.goldBerriesIn) + "," + str(game.snailLoc) + "\n"
         if (not os.path.isdir("logs")):
             os.mkdir("logs")
         if (not os.path.isdir(os.path.join("logs", self.path))):

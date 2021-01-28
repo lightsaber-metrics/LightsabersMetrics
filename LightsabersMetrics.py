@@ -17,7 +17,7 @@ class LSM:
         self.maps = []
         for name in mapNames:
             self.maps.append(Map(name))
-        self.mon = {"top": 0, "left": 0, "width": 1920, "height": 1080}
+        self.mon = {"mon":0, "top": 0, "left": 0, "width": 1920, "height": 1080}
         self.sct = mss()
         self.state = None
         self.currSet = None
@@ -25,6 +25,7 @@ class LSM:
         self.logging = "logging" in modules
         self.textFiles = "streamer" in modules
         self.scoreboard = "scoreboard" in modules
+        self.scoreboardKey = scoreboardKey
         self.exit = False
 
     def stop(self):
@@ -46,10 +47,10 @@ class LSM:
             currMap = None
             print ("Waiting to detect game...")
             while (currMap is None):
-                currMap = Map.checkMap(self.updateState())
+                currMap = Map.checkMap(maps = self.maps, state=self.updateState())
                 if self.exit:
                     return
-            currGame = Game(currMap)
+            currGame = Game(currMap, self.scoreboardKey)
             print ("Detected: " + currGame.map.name)
             while (not currGame.update(self.updateState())):
                 if self.exit:
@@ -61,7 +62,6 @@ class LSM:
                 if self.exit:
                     return
             currGame.endGame(currWinner[0], currWinner[1], endTime)
-            print (currGame.getInfo())
             self.currSet.addGame(currGame)
             self.currSet.checkWinner()
         if (self.stats):
@@ -69,6 +69,10 @@ class LSM:
         if (self.logging):
             self.currSet.log()
 
+    def record(self):
+        while not self.exit:
+            self.startSet()
+
 if __name__ == '__main__':
     LSM = LSM()
-    LSM.startSet()
+    LSM.record()

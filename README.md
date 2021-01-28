@@ -7,6 +7,7 @@ Main file to run (right now) is KQBTracker.py
   * Detect what map is being played on, and exactly when it starts
   * Accurately track berries in the hive for blue and gold
   * Track queen lives (working for most maps)
+  * Real time 🐌 tracker
   * Detect the winning team
   * Detect the victory condition
   * Track a full best of 5 set
@@ -14,7 +15,7 @@ Main file to run (right now) is KQBTracker.py
   * Output set information in CSV format
   
  ## Restrictions
-  * Right now, this only works for fullscreen 1920x1080 KQB.  Other resolutions will break things horribly.
+  * Right now, this only works for fullscreen 1920x1080 KQB.  Other resolutions will break things horribly.  May only work with one monitor, too.
   * Alt-tabbing duing gameplay will probably break stuff.  Doing it in between sets or in between a match (during loading) *should* be okay.
   * This cannot be used on video streamed to/through Twitch/Discord, due to image compression.  It should work on locally recorded games.
   * I've only tested this on Windows, I've tried to make the code OS agnostic but I can't guarantee compatibility.
@@ -24,4 +25,5 @@ Main file to run (right now) is KQBTracker.py
   * Live text file editing for use with OBS
   * Integration with HattrickSwayze's Scoreboard
   * Player/Stat detection using Prosive's API
-  * 🐌
+  * Gate control percentage
+

@@ -12,6 +12,7 @@ class Map:
         self.goldHoles = []
         self.blueEggLocs = []
         self.goldEggLocs = []
+        self.snailHeights = []
         rawjson = json.load(open(os.path.join("res", mapName+".json")))
         self.name = rawjson['name']
         self.image = Image.open(os.path.join("res", mapName+".png"))
@@ -24,6 +25,8 @@ class Map:
             self.blueEggLocs.append((eggLoc['x'],eggLoc['y']))
         for eggLoc in rawjson['goldEggs']:
             self.goldEggLocs.append((eggLoc['x'],eggLoc['y']))
+        for snailHeight in rawjson['snailHeights']:
+            self.snailHeights.append(snailHeight)
         self.blueSnail = rawjson['blueSnail']
         self.goldSnail = rawjson['goldSnail']
 

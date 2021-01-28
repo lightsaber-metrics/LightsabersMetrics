@@ -33,6 +33,7 @@ if __name__ == '__main__':
             break
         if (event == "sbBox"):
             window['sbKey'].Update(disabled = not bool(window['sbBox'].get()))
+            window['sbKey'].Update(value="")
         if (event == "startButton"):
             for element in window.element_list():
                 if hasattr(element, 'Disabled'):
@@ -51,7 +52,7 @@ if __name__ == '__main__':
             if values["sbBox"]:
                 modules.append("scoreboard")
             metric = LSM(modules=modules, scoreboardKey=values['sbKey'])
-            thread = threading.Thread(target=metric.startSet, daemon=True)
+            thread = threading.Thread(target=metric.record, daemon=True)
             thread.start()
         if (event == "stopButton"):
             for element in window.element_list():
