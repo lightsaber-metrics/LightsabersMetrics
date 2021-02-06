@@ -27,3 +27,17 @@ Main file to run (right now) is KQBTracker.py
   * Player/Stat detection using Prosive's API
   * Gate control percentage
 
+## Instructions
+  Make sure you have Python 3.9 installed and in your system path
+  Run this command to install required libraries
+  ```console
+  py -m pip install -r requirements.txt
+  ```
+  Start either the GUI or tracker directly in the command line
+  ```console
+  py MetricGui.py
+  ```
+  or
+  ```console
+  py LightsabersMetrics.py
+  ```
