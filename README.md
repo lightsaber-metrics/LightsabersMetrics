@@ -1,6 +1,6 @@
 # Lightsaber'sMetrics
 This is a program that attempts to track stats in a live Killer Queen Black set, by taking screenshots of the game (via MSS) and performing image analysis.
-Main file to run (right now) is KQBTracker.py
+Main file to run (right now) is LightsabersMetrics.py
 
 
 ## Features
